@@ -13,12 +13,19 @@ module Slackwise
       context.add_and_split_eq_expense_for(args)
     end
 
-    def list
+    def list(args)
       records = context.event_repository.all
-      user_records = records.find_all { |r| r.owner_id == context.current_user }
-      debts = user_record.map(&:debts)
+      user_records = records.find_all { |r| r.id_owner == context.current_user }
+      debts = user_records.map(&:debts)
+      debts = debts.join(" ").split(" ")
 
+      hsh = Hash.new(0)
+      users = debts.each_slice(2) do |user, cash|
+        cash = cash.to_f
+        hsh[user] += cash
+      end
 
+      puts "Users: #{hsh}"
     end
 
     def ae(args)
