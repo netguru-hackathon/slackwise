@@ -1,5 +1,3 @@
-#!/bin/ruby
-
 require_relative './context'
 require_relative './command_parser'
 

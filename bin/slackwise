@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ruby `pwd`/app/slackwise.rb
