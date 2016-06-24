@@ -18,8 +18,6 @@ module Slackwise
       event_name = args.shift
       debt = args.pop
       people = args
-
-      puts "TODO Add expense for: #{people} #{debt}"
     end
 
     private
