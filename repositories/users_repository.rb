@@ -3,30 +3,14 @@ require_relative 'base_repository'
 require 'csv'
 
 class UsersRepository < BaseRepository
-  attr_reader :path
+  attr_reader :path, :classname
 
-  def initialize(path: 'db/users.csv')
+  def initialize(path: 'db/users.csv', classname: User)
     @path = path
+    @classname = classname
   end
 
-  def write(row)
-    CSV.open(path, "ab") do |csv|
-      csv << row
-    end
+  def find_by_mention(mention)
+    all.find { |record| record.mention.to_s == mention.to_s }
   end
-
-  def all
-    array.map { |row| ::User.new(row) }
-  end
-
-  def find_by_id(id)
-    all.map{ |user| user if user.id.to_s == id.to_s }.compact.first
-  end
-
-  private
-
-  def array
-    arr_of_arrs = CSV.read(path)
-  end
-
 end
