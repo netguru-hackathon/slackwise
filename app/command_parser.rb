@@ -7,7 +7,7 @@ module Slackwise
     end
 
     def add_expense(args)
-      Integer(args[1])
+      Integer(args[2])
       context.add_expense_for(args)
     rescue ArgumentError => e
       context.add_and_split_eq_expense_for(args)
