@@ -13,6 +13,14 @@ module Slackwise
       context.add_and_split_eq_expense_for(args)
     end
 
+    def list
+      records = context.event_repository.all
+      user_records = records.find_all { |r| r.owner_id == context.current_user }
+      debts = user_record.map(&:debts)
+
+
+    end
+
     def ae(args)
       add_expense(args)
     end
